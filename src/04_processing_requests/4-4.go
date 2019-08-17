@@ -7,11 +7,19 @@ import (
 
 func process(w http.ResponseWriter, r *http.Request) {
 	// リクエストを解析してからFormフィールドにアクセスする
-	r.ParseForm()
+	//r.ParseForm()
 	// クエリストリングとPOSTフォームの両方の値を参照したい時
 	//fmt.Fprintln(w, r.Form)
 	// POSTフォームの値だけを参照したい時
-	fmt.Fprintln(w, r.PostForm)
+	//fmt.Fprintln(w, r.PostForm)
+	// multipart/formdataの時
+	//r.ParseMultipartForm(1024)
+	//fmt.Fprintln(w, r.MultipartForm)
+	// FormValueメソッドを使う時
+	fmt.Fprintln(w, r.FormValue("hello"))
+	// output: map[thread:[123] hello:[shinobe179 world] post:[456]]
+	fmt.Fprintln(w, r.Form)
+
 }
 
 func main() {
